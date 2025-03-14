@@ -17,7 +17,8 @@ namespace GSCOMD_2._0
     /// </summary>
     public partial class MainWindow : Window
     {
-       private string meConectSql;
+        private string meConectSql;
+        //private string code;
 
         public MainWindow()
         {
@@ -31,57 +32,64 @@ namespace GSCOMD_2._0
 
         private void txtCodeTrab_validacion(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            if (e.Key == Key.Enter)
             {
                 if (int.TryParse(txtCodeTrab.Text, out int codigo))
                 {
                     bool valor = consultaAtencion(codigo);
 
-                    if ( valor == true)
+                    if (valor == true)
                     {
                         txtCodeTrab.Text = "";
                         txtNombTrab.Text = "";
                         imgTrab.Source = null;
                         MessageBox.Show("COMENSAL ATENDIDO");
-                        return; 
+                        return;
                     }
 
-                    (string code, string nom) = consultaTrabajador(codigo);
-                    txtCodeTrab.Text = code.ToString();
-                    txtNombTrab.Text = nom.ToString();
-                    consultarImagen(code);
+                    consultaTrabajador(codigo);
+                    //code = codigo.ToString();
                 }
             }
         }
 
-        private (string, string) consultaTrabajador(int codigo) {
-            try {
+        private void consultaTrabajador(int codigo)
+        {
+            try
+            {
                 using (SqlConnection conn = new SqlConnection(meConectSql))
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("SP_TCASIG_Q02", conn)) {
+                    using (SqlCommand cmd = new SqlCommand("SP_TCASIG_Q02", conn))
+                    {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ISCO_TRAB", codigo);
                         cmd.Parameters.AddWithValue("@ISCO_COME", "01");
-                        
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
                             {
-                                return (reader["CO_TRAB"].ToString(), reader["NO_PERS"].ToString());
+                                txtCodeTrab.Text = reader["CO_TRAB"].ToString();
+                                txtNombTrab.Text = reader["NO_PERS"].ToString();
+                                string code = codigo.ToString();
+                                consultarImagen(code);
                             }
                             else
                             {
+                                txtCodeTrab.Text = "";
+                                txtNombTrab.Text = "";
                                 MessageBox.Show("NO TIENE ASIGNACION", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return;
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex){ 
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            return ("", "");
         }
 
         private bool consultaAtencion(int codigo)
@@ -151,7 +159,8 @@ namespace GSCOMD_2._0
                     imgTrab.Source = bitmap;
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -259,10 +268,25 @@ namespace GSCOMD_2._0
 
         //private void listaAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
-           
+
         //}
 
-       
-        //Comentar todos los metodos del los codigos 
+        //Probar que la conexion a la DB sea exitosa
+        //private void TestConnection()
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(meConectSql))
+        //        {
+        //            conn.Open();
+        //            MessageBox.Show("Conexión exitosa.");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error de conexión: {ex.Message}");
+        //    }
+        //}
+
     }
 }
