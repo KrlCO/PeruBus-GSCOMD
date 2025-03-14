@@ -185,5 +185,10 @@ namespace GSCOMD_2._0
         {
             frmAtte.NavigationService.Navigate(new regiAttention());
         }
+
+        private void btnReporte_Click(object sender, RoutedEventArgs e)
+        {
+            new ListaReports().Show();
+        }
     }
 }
