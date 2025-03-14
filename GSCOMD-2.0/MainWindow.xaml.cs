@@ -28,6 +28,7 @@ namespace GSCOMD_2._0
             //InitializeComponent();
             //meConectSql = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
 
+            frmActivation(validation);
         }
 
         private void limpiarCampos()
@@ -53,10 +54,7 @@ namespace GSCOMD_2._0
                         MessageBox.Show("COMENSAL ATENDIDO");
                         return;
                     }
-
-                    validation += 1;
                     consultaTrabajador(codigo);
-                    lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
                 }
             }
         }
@@ -82,8 +80,8 @@ namespace GSCOMD_2._0
                                 txtNombTrab.Text = reader["NO_PERS"].ToString();
                                 string code = codigo.ToString();
                                 
-                                //validation += 1;
-                                //lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
+                                validation = 1;
+                                lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
                                 consultarImagen(code);
                             }
                             else
@@ -99,6 +97,14 @@ namespace GSCOMD_2._0
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void frmActivation (int valor)
+        {
+            if(validation != 0)
+            {
+                frmAtte.IsEnabled = false;
             }
         }
 
@@ -175,138 +181,9 @@ namespace GSCOMD_2._0
             }
         }
 
-
-
-
-        private void MuestraAtencionCli()
+        private void frame_attention(object sender, EventArgs e)
         {
-            using (SqlConnection conn = new SqlConnection(meConectSql))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("SP_TMCOME_002", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-
-                        //listaAtencion.DisplayMemberPath = "NOMBRE";  // Mostrar los nombres en el ComboBox
-                        //listaAtencion.SelectedValuePath = "CODIGO";  // Al seleccionar, guardar el código
-                        //listaAtencion.ItemsSource = dt.DefaultView;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error al obtener datos: {ex.Message}");
-                }
-            }
+            frmAtte.NavigationService.Navigate(new regiAttention());
         }
-
-
-
-        // Método para verificar si el trabajador tiene asignación
-        private void VerificarAsignacionTrabajador(string codigoTrabajador)
-        {
-            using (SqlConnection conn = new SqlConnection(meConectSql))
-            {
-                try
-                {
-                    conn.Open();
-                    using (SqlCommand cmd = new SqlCommand("SP_TMCOME_002", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@CodigoTrabajador", codigoTrabajador);
-
-                        object resultado = cmd.ExecuteScalar();
-
-                        if (resultado != null && resultado != DBNull.Value)
-                        {
-                            lblAsignacion.Content = "Asignado";  // Si tiene asignación
-                        }
-                        else
-                        {
-                            lblAsignacion.Content = "No Asignado";  // Si no tiene asignación
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error al consultar la asignación: {ex.Message}");
-                }
-            }
-        }
-
-
-        // Evento que se activa cuando se escribe en el TextBox
-        private void txtCodigoTrabajador_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(txtCodigoTrabajador.Text))
-            {
-                VerificarAsignacionTrabajador(txtCodigoTrabajador.Text);
-            }
-            else
-            {
-                lblAsignacion.Content = ""; // Limpiar el label si no hay texto
-            }
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //if (listaAtencion.SelectedItem != null)
-            //{
-            //    DataRowView row = listaAtencion.SelectedItem as DataRowView;
-            //    string codigo = row["CODIGO"].ToString();
-            //    string nombre = row["NOMBRE"].ToString();
-
-            //    MessageBox.Show($"Seleccionaste: {nombre} (Código: {codigo})");
-            //}
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("cancelando");
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show($"Cadena de conexión: {meConectSql}");
-        }
-
-
-        //private void listaAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-
-        //}
-
-        //private void listaAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //          ESTO ES UNA PRUEBA
-        //}
-
-        //Probar que la conexion a la DB sea exitosa
-        //private void TestConnection()
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(meConectSql))
-        //        {
-        //            conn.Open();
-        //            MessageBox.Show("Conexión exitosa.");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Error de conexión: {ex.Message}");
-        //    }
-        //}
-
     }
 }
