@@ -262,22 +262,7 @@ namespace GSCOMD_2._0
            
         //}
 
-        //Probar que la conexion a la DB sea exitosa
-        //private void TestConnection()
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(meConectSql))
-        //        {
-        //            conn.Open();
-        //            MessageBox.Show("Conexión exitosa.");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Error de conexión: {ex.Message}");
-        //    }
-        //}
-
+       
+        //Comentar todos los metodos del los codigos 
     }
 }
