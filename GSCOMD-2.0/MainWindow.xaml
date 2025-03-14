@@ -18,6 +18,7 @@
         <Label Content="Comensal:" HorizontalAlignment="Left" Margin="30,94,0,0" VerticalAlignment="Top" Height="26" Width="150" Grid.Column="2" FontFamily="Consolas" FontWeight="Bold"/>
         <Button x:Name="btnValidacion" Content="VALIDAR" Margin="30,217,216,0" VerticalAlignment="Top" Grid.Column="2" Height="33" RenderTransformOrigin="0.52,0.03" FontFamily="Consolas" FontSize="14" FontWeight="Bold"/>
         <Button Content="Cancelar" HorizontalAlignment="Left" Margin="158,354,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20"/>
+        <Button Name="btnReporte" Content="Reporte" HorizontalAlignment="Left" Margin="291,354,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Height="20" Click="btnReporte_Click"/>
         <!--<ListBox Name="listaAtencion" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="400,33,31,201" SelectionChanged="listaAtencion_SelectionChanged"/>-->
         <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2"
             HorizontalAlignment="Right" VerticalAlignment="Top"
