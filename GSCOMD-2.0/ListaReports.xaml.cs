@@ -14,6 +14,7 @@ namespace GSCOMD_2._0
         {
             InitializeComponent();
             CargarDatos(); // Cargar datos iniciales al abrir la ventana
+            //Agregar datos del Crystal
         }
 
         private void CargarDatos()
