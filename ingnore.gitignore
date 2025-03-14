@@ -1,0 +1,13 @@
+# Ignorar archivos y carpetas de compilación de Visual Studio
+bin/
+obj/
+.vs/
+
+# Ignorar archivos temporales y caché de compilación
+*.suo
+*.user
+*.cache
+*.pdb
+*.exe
+*.dll
+*.log
