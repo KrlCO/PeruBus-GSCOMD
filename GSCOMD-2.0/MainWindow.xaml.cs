@@ -18,7 +18,7 @@ namespace GSCOMD_2._0
     public partial class MainWindow : Window
     {
         private string meConectSql;
-        //private string code;
+        private int validation = 0;
 
         public MainWindow()
         {
@@ -28,6 +28,15 @@ namespace GSCOMD_2._0
             //InitializeComponent();
             //meConectSql = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
 
+        }
+
+        private void limpiarCampos()
+        {
+            txtCodeTrab.Text = "";
+            txtNombTrab.Text = "";
+            lblAsig.Content = "";
+            imgTrab.Source = null;
+            return;
         }
 
         private void txtCodeTrab_validacion(object sender, KeyEventArgs e)
@@ -40,15 +49,14 @@ namespace GSCOMD_2._0
 
                     if (valor == true)
                     {
-                        txtCodeTrab.Text = "";
-                        txtNombTrab.Text = "";
-                        imgTrab.Source = null;
+                        limpiarCampos();
                         MessageBox.Show("COMENSAL ATENDIDO");
                         return;
                     }
 
+                    validation += 1;
                     consultaTrabajador(codigo);
-                    //code = codigo.ToString();
+                    lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
                 }
             }
         }
@@ -73,12 +81,14 @@ namespace GSCOMD_2._0
                                 txtCodeTrab.Text = reader["CO_TRAB"].ToString();
                                 txtNombTrab.Text = reader["NO_PERS"].ToString();
                                 string code = codigo.ToString();
+                                
+                                //validation += 1;
+                                //lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
                                 consultarImagen(code);
                             }
                             else
                             {
-                                txtCodeTrab.Text = "";
-                                txtNombTrab.Text = "";
+                                limpiarCampos();
                                 MessageBox.Show("NO TIENE ASIGNACION", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 return;
                             }
@@ -166,6 +176,8 @@ namespace GSCOMD_2._0
         }
 
 
+
+
         private void MuestraAtencionCli()
         {
             using (SqlConnection conn = new SqlConnection(meConectSql))
@@ -192,6 +204,8 @@ namespace GSCOMD_2._0
                 }
             }
         }
+
+
 
         // Método para verificar si el trabajador tiene asignación
         private void VerificarAsignacionTrabajador(string codigoTrabajador)
@@ -224,6 +238,7 @@ namespace GSCOMD_2._0
                 }
             }
         }
+
 
         // Evento que se activa cuando se escribe en el TextBox
         private void txtCodigoTrabajador_TextChanged(object sender, TextChangedEventArgs e)
