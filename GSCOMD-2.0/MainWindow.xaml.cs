@@ -286,6 +286,11 @@ namespace GSCOMD_2._0
 
         //}
 
+        //private void listaAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //          ESTO ES UNA PRUEBA
+        //}
+
         //Probar que la conexion a la DB sea exitosa
         //private void TestConnection()
         //{
