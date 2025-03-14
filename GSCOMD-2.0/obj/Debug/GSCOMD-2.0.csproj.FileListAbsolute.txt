@@ -97,3 +97,5 @@ C:\Users\DESARROLLO\Desktop\GSCOMD2.0\PeruBus-GSCOMD\GSCOMD-2.0\obj\Debug\GSCOMD
 C:\Users\DESARROLLO\Desktop\GSCOMD2.0\PeruBus-GSCOMD\GSCOMD-2.0\obj\Debug\GSCOMD-2.0.csproj.CoreCompileInputs.cache
 C:\Users\DESARROLLO\Desktop\GSCOMD2.0\PeruBus-GSCOMD\GSCOMD-2.0\obj\Debug\GSCOMD-2.0.exe
 C:\Users\DESARROLLO\Desktop\GSCOMD2.0\PeruBus-GSCOMD\GSCOMD-2.0\obj\Debug\GSCOMD-2.0.pdb
+C:\Users\DESARROLLO\Desktop\GSCOMD2.0\PeruBus-GSCOMD\GSCOMD-2.0\obj\Debug\ListaReports.g.cs
+C:\Users\DESARROLLO\Desktop\GSCOMD2.0\PeruBus-GSCOMD\GSCOMD-2.0\obj\Debug\ListaReports.baml

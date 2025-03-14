@@ -1,0 +1,19 @@
+﻿<Window x:Class="GSCOMD_2._0.ListaReports"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GSCOMD_2._0"
+        mc:Ignorable="d"
+        Title="ListaReports" Height="450" Width="800">
+    <Grid>
+        <DataGrid Name="dgLista" HorizontalAlignment="Left" Height="280" Margin="10,64,0,0" VerticalAlignment="Top" Width="772" SelectionChanged="DataGrid_SelectionChanged"/>
+        <Label Content="REPORTE DE VENTAS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="322,22,0,0" Width="126"/>
+        <Button Name="btnExportar" Content="EXPORTAR" HorizontalAlignment="Left" Margin="570,373,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <DatePicker Name="FechIni" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="140,371,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
+        <DatePicker Name="FechFin" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="322,371,0,0" VerticalAlignment="Top" Width="94" Height="26" />
+        <Label Content="Desde" HorizontalAlignment="Left" Margin="75,371,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasta" HorizontalAlignment="Left" Margin="266,371,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

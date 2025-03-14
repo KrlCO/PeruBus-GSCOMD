@@ -255,25 +255,26 @@ namespace GSCOMD_2._0
             //}
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("cancelando");
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show($"Cadena de conexión: {meConectSql}");
         }
 
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            new ListaReports().Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         //private void listaAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
 
-        //}
-
-        //private void listaAtencion_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //          ESTO ES UNA PRUEBA
         //}
 
         //Probar que la conexion a la DB sea exitosa
