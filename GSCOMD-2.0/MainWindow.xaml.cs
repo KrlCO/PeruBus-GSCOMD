@@ -28,7 +28,7 @@ namespace GSCOMD_2._0
             //InitializeComponent();
             //meConectSql = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
 
-            frmActivation(validation);
+            frmAtte.NavigationService.Navigate(new regiAttention());
         }
 
         private void limpiarCampos()
@@ -55,6 +55,7 @@ namespace GSCOMD_2._0
                         return;
                     }
                     consultaTrabajador(codigo);
+                    
                 }
             }
         }
@@ -104,7 +105,10 @@ namespace GSCOMD_2._0
         {
             if(validation != 0)
             {
+                regiAttention frmRegi = new regiAttention();
                 frmAtte.IsEnabled = false;
+                frmRegi.IsEnabled = false;
+                frmRegi.grdAtte.IsEnabled = false;
             }
         }
 
@@ -183,7 +187,12 @@ namespace GSCOMD_2._0
 
         private void frame_attention(object sender, EventArgs e)
         {
-            frmAtte.NavigationService.Navigate(new regiAttention());
+           
+
+            if (frmAtte.Content is regiAttention regiAtte)
+            {
+                regiAtte.grdAtte.IsEnabled = false;
+            }
         }
 
         private void btnReporte_Click(object sender, RoutedEventArgs e)

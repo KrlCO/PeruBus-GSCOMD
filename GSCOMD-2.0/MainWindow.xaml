@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:GSCOMD_2._0"
         mc:Ignorable="d"
         Title="GSCOMD" Height="527" Width="965">
-    <Grid Margin="0,-1,0,4" RenderTransformOrigin="0.422,0.672">
+    <Grid Margin="0,0,0,0" RenderTransformOrigin="0,0" Height="496" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="18*"/>
             <ColumnDefinition Width="273*"/>
             <ColumnDefinition Width="396"/>
         </Grid.ColumnDefinitions>
@@ -27,7 +27,7 @@
         </Border>
         <Label x:Name="lblAsig" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="30,170,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Width="150" RenderTransformOrigin="0.511,1.231" Height="30" FontFamily="Consolas" FontWeight="Bold" Background="Transparent"/>
 
-        <Frame x:Name="frmAtte" NavigationUIVisibility="Hidden" Content="" Margin="0,0,0,30" RenderTransformOrigin="1.46,-0.18" ContentRendered="frame_attention" HorizontalAlignment="Right" Width="531" Height="433" VerticalAlignment="Bottom" Grid.Column="1"/>
+        <Frame x:Name="frmAtte" NavigationUIVisibility="Hidden" Content="" RenderTransformOrigin="1.46,-0.18" ContentRendered="frame_attention" Grid.Column="1" HorizontalAlignment="Right" Width="526" Margin="0,30,0,0"/>
         <!--<Label Name="lblAsignacion" Content="Estado" FontWeight="Bold" Grid.ColumnSpan="2" />-->
 
     </Grid>
