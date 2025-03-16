@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GSCOMD_2._0"
       mc:Ignorable="d" d:DesignWidth="531"
-      Title="regiAttention" Height="282.368">
+      Title="regiAttention" Height="496">
 
-    <Grid Background="White" Margin="0,0,0,-151" IsEnabled="False">
-        <ComboBox HorizontalAlignment="Left" Margin="44,42,0,0" VerticalAlignment="Top" Width="150" FontFamily="Consolas" FontSize="11" Height="25"/>
+    <Grid x:Name="grdAtte" Background="White" Margin="0,0,0,0">
+        <ComboBox HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" Width="250" FontFamily="Consolas" FontSize="11" Height="30"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="338,42,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
     </Grid>
 </Page>
