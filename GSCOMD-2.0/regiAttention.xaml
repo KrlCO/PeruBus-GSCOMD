@@ -8,7 +8,8 @@
       Title="regiAttention" Height="496">
 
     <Grid x:Name="grdAtte" Background="White" Margin="0,0,0,0">
-        <ComboBox HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" Width="250" FontFamily="Consolas" FontSize="11" Height="30"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="338,42,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
+        <ComboBox Name="CboTipoComida" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" FontFamily="Consolas" FontSize="11" Height="30" SelectionChanged="CboTipoComida_SelectionChanged"/>
+        <Button Name="BtnGenerar" Content="Registrar" HorizontalAlignment="Left" Margin="431,304,0,0" VerticalAlignment="Top" Width="76" Height="27" Click="Button_Click"/>
+        <ComboBox Name="CboCategoria" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top" Width="224" FontFamily="Consolas" FontSize="11" Height="30" SelectionChanged="CboCategoria_SelectionChanged"/>
     </Grid>
 </Page>

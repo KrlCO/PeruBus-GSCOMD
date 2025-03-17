@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Windows.Input;
 using System.Data.SqlClient;
 using System.Data;
-//using Path = System.IO.Path;
 using System.IO;
 
 namespace GSCOMD_2._0
@@ -51,7 +50,7 @@ namespace GSCOMD_2._0
                     if (valor == true)
                     {
                         limpiarCampos();
-                        MessageBox.Show("COMENSAL ATENDIDO");
+                        MessageBox.Show("TRABAJADOR ATENDIDO");
                         return;
                     }
                     consultaTrabajador(codigo);
@@ -59,8 +58,8 @@ namespace GSCOMD_2._0
                 }
             }
         }
-        
-        //Modificacion de Metodo consultaTrabajador. Se modifico que post loggeo se reciba si es COMELIMA o COMEICA
+
+
         private void consultaTrabajador(int codigo)
         {
             try
@@ -73,7 +72,7 @@ namespace GSCOMD_2._0
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ISCO_TRAB", codigo);
 
-                        // Asignar el valor correcto a @ISCO_COME
+                        // Asignar el valor correcto a @ISCO_COME según el usuario logueado
                         string iscoCome = (Login.UsuarioLogueado == "COMELIMA") ? "01" : "02";
                         cmd.Parameters.AddWithValue("@ISCO_COME", iscoCome);
 
@@ -81,19 +80,26 @@ namespace GSCOMD_2._0
                         {
                             if (reader.Read())
                             {
+                                // Usuario tiene asignación
                                 txtCodeTrab.Text = reader["CO_TRAB"].ToString();
                                 txtNombTrab.Text = reader["NO_PERS"].ToString();
                                 string code = codigo.ToString();
 
-                                validation = 1;
-                                lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
+                                validation = 1; // Se asigna el valor de validación
+                                lblAsig.Content = "CON ASIGNACION";
                                 consultarImagen(code);
+
+                                // Desbloquear la vista
+                                DesbloquearVista();
                             }
                             else
                             {
+                                // Usuario NO tiene asignación
                                 limpiarCampos();
                                 MessageBox.Show("NO TIENE ASIGNACION", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                return;
+
+                                validation = 0; // Mantener bloqueado
+                                BloquearVista();
                             }
                         }
                     }
@@ -102,6 +108,41 @@ namespace GSCOMD_2._0
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // Función para desbloquear la vista cuando el usuario tiene asignación
+        private void DesbloquearVista()
+        {
+            if (frmAtte.Content is regiAttention regiAtte)
+            {
+                frmAtte.IsEnabled = true;
+                regiAtte.IsEnabled = true;
+                regiAtte.grdAtte.IsEnabled = true;
+            }
+        }
+
+        // Función para bloquear la vista cuando el usuario NO tiene asignación
+        private void BloquearVista()
+        {
+            if (frmAtte.Content is regiAttention regiAtte)
+            {
+                frmAtte.IsEnabled = false;
+                regiAtte.IsEnabled = false;
+                regiAtte.grdAtte.IsEnabled = false;
+            }
+        }
+
+        // Se ajusta frame_attention() para bloquear/desbloquear según el estado de validation
+        private void frame_attention(object sender, EventArgs e)
+        {
+            if (validation == 1)
+            {
+                DesbloquearVista(); // Si tiene asignación, desbloquear
+            }
+            else
+            {
+                BloquearVista(); // Si no tiene asignación, mantener bloqueado
             }
         }
 
@@ -190,15 +231,7 @@ namespace GSCOMD_2._0
             }
         }
 
-        private void frame_attention(object sender, EventArgs e)
-        {
-           
 
-            if (frmAtte.Content is regiAttention regiAtte)
-            {
-                regiAtte.grdAtte.IsEnabled = false;
-            }
-        }
 
         private void btnReporte_Click(object sender, RoutedEventArgs e)
         {
