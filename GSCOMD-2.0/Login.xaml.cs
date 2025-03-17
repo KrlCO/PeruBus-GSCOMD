@@ -8,7 +8,10 @@ namespace GSCOMD_2._0
 {
     public partial class Login : Window
     {
+
         private string connectionString;
+        public static string UsuarioLogueado { get; private set; } // Variable global
+
 
         public Login()
         {
@@ -70,16 +73,14 @@ namespace GSCOMD_2._0
                         {
                             if (reader.Read())
                             {
-                                string codigoUsuario = reader["CO_USUA"].ToString();
+                                UsuarioLogueado = reader["CO_USUA"].ToString(); // Guardar el usuario
 
-                                // Determinar el comedor en base al código de usuario
-                                if (codigoUsuario.StartsWith("COMELIMA"))
+                                if (UsuarioLogueado.StartsWith("COMELIMA"))
                                     return "Lima";
-                                else if (codigoUsuario.StartsWith("COMEICA"))
-                                {
+                                else if (UsuarioLogueado.StartsWith("COMEICA"))
                                     return "Ica";
-                                }
                             }
+
                         }
                     }
                 }
