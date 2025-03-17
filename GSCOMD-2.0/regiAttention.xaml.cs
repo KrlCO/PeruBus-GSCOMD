@@ -24,6 +24,21 @@ namespace GSCOMD_2._0
         {
             InitializeComponent();
         }
+
+        private void CboTipoComida_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void CboCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
 
