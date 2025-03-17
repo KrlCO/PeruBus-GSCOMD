@@ -7,9 +7,62 @@
       mc:Ignorable="d" d:DesignWidth="531"
       Title="regiAttention" Height="496">
 
-    <Grid x:Name="grdAtte" Background="White" Margin="0,0,0,0">
-        <ComboBox Name="CboTipoComida" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="250" FontFamily="Consolas" FontSize="11" Height="30" SelectionChanged="CboTipoComida_SelectionChanged"/>
-        <Button Name="BtnGenerar" Content="Registrar" HorizontalAlignment="Left" Margin="431,304,0,0" VerticalAlignment="Top" Width="76" Height="27" Click="Button_Click"/>
+    <Grid x:Name="grdAtte" Background="White" Margin="-18,-7,18,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="495*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Name="CboTipoComida" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" Width="235" FontFamily="Consolas" FontSize="11" Height="30" SelectionChanged="CboTipoComida_SelectionChanged"/>
+        <Button Name="BtnGenerar" Content="Registrar" HorizontalAlignment="Left" Margin="350,410,0,0" VerticalAlignment="Top" Width="76" Height="27" Click="Button_Click" RenderTransformOrigin="-0.079,-1.778"/>
         <ComboBox Name="CboCategoria" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top" Width="224" FontFamily="Consolas" FontSize="11" Height="30" SelectionChanged="CboCategoria_SelectionChanged"/>
+        <Button Content="Cancelar" HorizontalAlignment="Left" Margin="446,410,0,0" VerticalAlignment="Top" Width="75" Height="27" Click="Button_Click_1"/>
+        <Grid Margin="25,119,0,94">
+            <!-- DataGrid para mostrar la lista de comidas -->
+            <DataGrid x:Name="dgComidas"
+              AutoGenerateColumns="False"
+              HeadersVisibility="Column"
+              CanUserAddRows="False"
+              IsReadOnly="True"
+              RowHeaderWidth="0"
+              Margin="10" SelectionChanged="dgComidas_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="*" />
+                    <DataGridTextColumn Header="Cant" Binding="{Binding Cantidad}" Width="50" />
+                    <DataGridTextColumn Header="Subv" Binding="{Binding Subvencion}" Width="50" />
+                    <DataGridTextColumn Header="Efect" Binding="{Binding Precio}" Width="70" />
+                    <DataGridTemplateColumn Width="30">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<Button Content="➖" 
+                                Background="Red"
+                                Foreground="White"
+                                FontWeight="Bold"
+                                Width="20"
+                                Click="EliminarFila"/>-->
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Sección de totales -->
+            <Grid Margin="10" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock Text="Cantidad" FontSize="16" FontWeight="Bold" Height="27" VerticalAlignment="Top" />
+                    <TextBlock Text="{Binding TotalCantidad}" FontSize="20" FontWeight="Bold" Foreground="Blue" Margin="10,0,0,0"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="Total (S/.)" FontSize="16" FontWeight="Bold" />
+                    <TextBlock Text="{Binding TotalPrecio}" FontSize="20" FontWeight="Bold" Foreground="Green" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>
