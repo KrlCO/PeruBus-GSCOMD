@@ -45,7 +45,7 @@ namespace GSCOMD_2._0
                 }
                 else if (comedor == "Ica")
                 {
-                    new ComedorIca().Show();
+                    new MainWindow().Show();
                 }
 
                 this.Close();
@@ -56,6 +56,7 @@ namespace GSCOMD_2._0
             }
         }
 
+        //Dentro de la validacion se debe validar que solamente se acepten minusculas. Tal cual esta en la DB
         private string ValidarCredenciales(string username, string password)
         {
             try
