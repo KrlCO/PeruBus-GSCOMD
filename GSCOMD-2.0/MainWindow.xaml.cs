@@ -59,7 +59,8 @@ namespace GSCOMD_2._0
                 }
             }
         }
-
+        
+        //Modificacion de Metodo consultaTrabajador. Se modifico que post loggeo se reciba si es COMELIMA o COMEICA
         private void consultaTrabajador(int codigo)
         {
             try
@@ -71,7 +72,10 @@ namespace GSCOMD_2._0
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@ISCO_TRAB", codigo);
-                        cmd.Parameters.AddWithValue("@ISCO_COME", "01");
+
+                        // Asignar el valor correcto a @ISCO_COME
+                        string iscoCome = (Login.UsuarioLogueado == "COMELIMA") ? "01" : "02";
+                        cmd.Parameters.AddWithValue("@ISCO_COME", iscoCome);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -80,7 +84,7 @@ namespace GSCOMD_2._0
                                 txtCodeTrab.Text = reader["CO_TRAB"].ToString();
                                 txtNombTrab.Text = reader["NO_PERS"].ToString();
                                 string code = codigo.ToString();
-                                
+
                                 validation = 1;
                                 lblAsig.Content = (validation != 0) ? "CON ASIGNACION" : "";
                                 consultarImagen(code);
@@ -100,6 +104,7 @@ namespace GSCOMD_2._0
                 MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         private void frmActivation (int valor)
         {
