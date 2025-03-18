@@ -5,15 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GSCOMD_2._0"
         mc:Ignorable="d"
-        Title="ListaReports" Height="450" Width="800">
-    <Grid>
-        <DataGrid Name="dgLista" HorizontalAlignment="Left" Height="280" Margin="10,64,0,0" VerticalAlignment="Top" Width="772" SelectionChanged="DataGrid_SelectionChanged"/>
-        <Label Content="REPORTE DE VENTAS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="322,22,0,0" Width="126"/>
-        <Button Name="btnExportar" Content="EXPORTAR" HorizontalAlignment="Left" Margin="570,373,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <DatePicker Name="FechIni" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="140,371,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
-        <DatePicker Name="FechFin" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="322,371,0,0" VerticalAlignment="Top" Width="94" Height="26" />
-        <Label Content="Desde" HorizontalAlignment="Left" Margin="75,371,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasta" HorizontalAlignment="Left" Margin="266,371,0,0" VerticalAlignment="Top"/>
+        Title="ListaReports" Height="500" Width="850" Background="#F0F0F0">
 
+    <Grid Margin="10">
+
+        <Label Content="📊 REPORTE DE VENTAS" 
+               FontSize="18" FontWeight="Bold" 
+               HorizontalAlignment="Center" 
+               VerticalAlignment="Top" 
+               Margin="0,10,0,0"/>
+
+        <DataGrid Name="dgLista" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Top" 
+                  Height="320" Margin="0,50,0,0"
+                  AutoGenerateColumns="False"
+                  AlternatingRowBackground="LightGray"
+                  GridLinesVisibility="None"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True">
+
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Background" Value="#007ACC"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Padding" Value="5"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="F. Emisión" Binding="{Binding FECHA_EMISION, StringFormat=\{0:yyyy-MM-dd\}}" Width="*"/>
+                <DataGridTextColumn Header="T. Comida" Binding="{Binding NO_TIPO_COMI}" Width="*"/>
+                <DataGridTextColumn Header="Categoría" Binding="{Binding NO_CATE}" Width="*"/>
+                <DataGridTextColumn Header="Asignación" Binding="{Binding ASIG}" Width="*"/>
+                <DataGridTextColumn Header="Subvención" Binding="{Binding IM_SUBV}" Width="*"/>
+                <DataGridTextColumn Header="Cantidad" Binding="{Binding NU_CANT}" Width="*"/>
+                <DataGridTextColumn Header="Sub Total" Binding="{Binding IM_SUBV_TOTA}" Width="*"/>
+                <DataGridTextColumn Header="Efectivo" Binding="{Binding IM_EFEC}" Width="*"/>
+                <DataGridTextColumn Header="Total" Binding="{Binding IM_TOTA}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Label Content="Desde:" HorizontalAlignment="Left" Margin="101,394,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker Name="FechIni" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="150,395,0,0" VerticalAlignment="Top" Width="148"/>
+
+        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="352,394,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker Name="FechFin" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="397,395,0,0" VerticalAlignment="Top" Width="148"/>
+
+        <Button Name="btnExportar" Content="📥 Exportar" 
+                HorizontalAlignment="Right" Margin="0,393,35,0" 
+                VerticalAlignment="Top" Width="120" Height="30"
+                FontSize="14" FontWeight="Bold"
+                Background="#28A745" Foreground="White"
+                Click="Button_Click"/>
     </Grid>
 </Window>
