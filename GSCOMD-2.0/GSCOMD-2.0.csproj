@@ -106,14 +106,6 @@
     <Compile Include="regiAttention.xaml.cs">
       <DependentUpon>regiAttention.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ReporteVentas.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteVentas.rpt</DependentUpon>
-    </Compile>
-    <Compile Include="ReporteVentas.xaml.cs">
-      <DependentUpon>ReporteVentas.xaml</DependentUpon>
-    </Compile>
     <Page Include="Comedor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,10 +160,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ReporteVentas.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -190,10 +178,6 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReporteVentas.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteVentas.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="GSCOMDDataSet.xsc">
       <DependentUpon>GSCOMDDataSet.xsd</DependentUpon>

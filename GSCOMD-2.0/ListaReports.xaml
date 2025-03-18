@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ListaReports" Height="500" Width="850" Background="#F0F0F0">
 
-    <Grid Margin="10">
+    <Grid Margin="10,10,10,0" Height="449" VerticalAlignment="Top">
 
         <Label Content="📊 REPORTE DE VENTAS" 
                FontSize="18" FontWeight="Bold" 
@@ -16,14 +16,13 @@
                Margin="0,10,0,0"/>
 
         <DataGrid Name="dgLista" 
-                  HorizontalAlignment="Stretch" 
-                  VerticalAlignment="Top" 
-                  Height="320" Margin="0,50,0,0"
+                  HorizontalAlignment="Stretch" Margin="0,50,0,79"
                   AutoGenerateColumns="False"
                   AlternatingRowBackground="LightGray"
                   GridLinesVisibility="None"
                   CanUserResizeColumns="True"
-                  CanUserSortColumns="True">
+                  CanUserSortColumns="True"
+                  Block.TextAlignment="Center">
 
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
@@ -49,11 +48,11 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label Content="Desde:" HorizontalAlignment="Left" Margin="101,394,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <DatePicker Name="FechIni" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="150,395,0,0" VerticalAlignment="Top" Width="148"/>
+        <Label Content="Desde:" HorizontalAlignment="Left" Margin="0,394,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker Name="FechIni" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="49,395,0,0" VerticalAlignment="Top" Width="148"/>
 
-        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="352,394,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <DatePicker Name="FechFin" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="397,395,0,0" VerticalAlignment="Top" Width="148"/>
+        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="232,394,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <DatePicker Name="FechFin" SelectedDateChanged="MyDatePicker_SelectedDateChanged" HorizontalAlignment="Left" Margin="277,395,0,0" VerticalAlignment="Top" Width="148"/>
 
         <Button Name="btnExportar" Content="📥 Exportar" 
                 HorizontalAlignment="Right" Margin="0,393,35,0" 
@@ -61,5 +60,13 @@
                 FontSize="14" FontWeight="Bold"
                 Background="#28A745" Foreground="White"
                 Click="Button_Click"/>
+
+        <Button Name="btnImprimir" Content="🖨️ Imprimir" 
+                FontFamily="Segoe UI Emoji"
+                HorizontalAlignment="Right" Margin="0,393,175,0" 
+                VerticalAlignment="Top" Width="120" Height="30"
+                FontSize="14" FontWeight="Bold"
+                Background="#007acc" Foreground="White"
+                Click="Button_Click_I"/>
     </Grid>
 </Window>
