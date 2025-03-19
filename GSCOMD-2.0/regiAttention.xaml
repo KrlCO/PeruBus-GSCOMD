@@ -16,6 +16,9 @@
         <Button Name="BtnGenerar" Content="Registrar" HorizontalAlignment="Left" Margin="350,410,0,0" VerticalAlignment="Top" Width="76" Height="27" Click="Button_Click" RenderTransformOrigin="-0.079,-1.778"/>
         <ComboBox Name="CboCategoria" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top" Width="224" FontFamily="Consolas" FontSize="11" Height="30" SelectionChanged="CboCategoria_SelectionChanged"/>
         <Button Content="Cancelar" HorizontalAlignment="Left" Margin="446,410,0,0" VerticalAlignment="Top" Width="75" Height="27" Click="Button_Click_1"/>
+
+        <Button x:Name="btnCargar" Content="CARGAR DATOS" HorizontalAlignment="Left" Margin="220,76,0,0" VerticalAlignment="Top" Width="115" Click="btnCargar_Click"/>
+
         <Grid Margin="25,119,0,94">
             <!-- DataGrid para mostrar la lista de comidas -->
             <DataGrid x:Name="dgComidas"
@@ -24,21 +27,21 @@
               CanUserAddRows="False"
               IsReadOnly="True"
               RowHeaderWidth="0"
-              Margin="10" SelectionChanged="dgComidas_SelectionChanged">
+              Margin="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}" Width="*" />
-                    <DataGridTextColumn Header="Cant" Binding="{Binding Cantidad}" Width="50" />
-                    <DataGridTextColumn Header="Subv" Binding="{Binding Subvencion}" Width="50" />
-                    <DataGridTextColumn Header="Efect" Binding="{Binding Precio}" Width="70" />
-                    <DataGridTemplateColumn Width="30">
+                    <DataGridTextColumn Header="Descripción" Binding="{Binding Description}" Width="*" />
+                    <DataGridTextColumn Header="Cant" Binding="{Binding Quantity}" Width="50" />
+                    <DataGridTextColumn Header="Subv" Binding="{Binding Grant}" Width="50" />
+                    <DataGridTextColumn Header="Efect" Binding="{Binding Cash}" Width="70" />
+                    <DataGridTemplateColumn Width="50">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <!--<Button Content="➖" 
+                                <Button Content="❌" 
                                 Background="Red"
                                 Foreground="White"
                                 FontWeight="Bold"
-                                Width="20"
-                                Click="EliminarFila"/>-->
+                                Width="30"
+                                />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
