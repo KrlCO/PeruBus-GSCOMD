@@ -235,6 +235,7 @@ namespace GSCOMD_2._0
         private void btnReporte_Click(object sender, RoutedEventArgs e)
         {
             new ListaReports().Show();
+            btnReporte.IsEnabled = false;
         }
     }
 }
