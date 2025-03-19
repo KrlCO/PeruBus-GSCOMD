@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="feeding.cs" />
     <Compile Include="regiAttention.xaml.cs">
       <DependentUpon>regiAttention.xaml</DependentUpon>
     </Compile>

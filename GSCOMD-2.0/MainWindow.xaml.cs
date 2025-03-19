@@ -26,7 +26,6 @@ namespace GSCOMD_2._0
 
             //InitializeComponent();
             //meConectSql = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
-
             frmAtte.NavigationService.Navigate(new regiAttention());
         }
 
@@ -147,16 +146,16 @@ namespace GSCOMD_2._0
         }
 
 
-        private void frmActivation (int valor)
-        {
-            if(validation != 0)
-            {
-                regiAttention frmRegi = new regiAttention();
-                frmAtte.IsEnabled = false;
-                frmRegi.IsEnabled = false;
-                frmRegi.grdAtte.IsEnabled = false;
-            }
-        }
+        //private void frmActivation (int valor)
+        //{
+        //    if(validation != 0)
+        //    {
+        //        regiAttention frmRegi = new regiAttention();
+        //        frmAtte.IsEnabled = false;
+        //        frmRegi.IsEnabled = false;
+        //        frmRegi.grdAtte.IsEnabled = false;
+        //    }
+        //}
 
         private bool consultaAtencion(int codigo)
         {
