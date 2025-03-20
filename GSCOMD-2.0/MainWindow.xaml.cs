@@ -16,6 +16,7 @@ namespace GSCOMD_2._0
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string iscoTrab { get; private set; } 
         private string meConectSql;
         private int validation = 0;
 
@@ -53,7 +54,7 @@ namespace GSCOMD_2._0
                         return;
                     }
                     consultaTrabajador(codigo);
-                    
+                    txtCodeTrab.IsEnabled = false;
                 }
             }
         }
@@ -80,9 +81,11 @@ namespace GSCOMD_2._0
                             if (reader.Read())
                             {
                                 // Usuario tiene asignación
-                                txtCodeTrab.Text = reader["CO_TRAB"].ToString();
+                                iscoTrab = reader["CO_TRAB"].ToString(); 
+                                txtCodeTrab.Text = iscoTrab.ToString();
                                 txtNombTrab.Text = reader["NO_PERS"].ToString();
                                 string code = codigo.ToString();
+                                
 
                                 validation = 1; // Se asigna el valor de validación
                                 lblAsig.Content = "CON ASIGNACION";

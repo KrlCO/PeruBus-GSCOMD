@@ -41,7 +41,7 @@
                                 Foreground="White"
                                 FontWeight="Bold"
                                 Width="30"
-                                />
+                                Click="btnClean"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
