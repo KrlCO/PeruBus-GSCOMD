@@ -32,7 +32,7 @@ namespace GSCOMD_2._0
 
         private void limpiarCampos()
         {
-            txtCodeTrab.Text = "";
+          txtCodeTrab.Text = "";
             txtNombTrab.Text = "";
             lblAsig.Content = "";
             imgTrab.Source = null;
@@ -58,7 +58,6 @@ namespace GSCOMD_2._0
                 }
             }
         }
-
 
         private void consultaTrabajador(int codigo)
         {

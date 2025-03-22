@@ -13,15 +13,20 @@ namespace GSCOMD_2._0
         private string meConectSql;
         private string iscoCome = (Login.UsuarioLogueado == "COMELIMA") ? "01" : "02";
         private string iscoTrab;
+
+        private int nuItem = 0;
+        private decimal imTotal = 0;
+
+
         public ObservableCollection<feeding> feedings { get; set; }
 
         public regiAttention()
         {
-            InitializeComponent();
-            meConectSql = ConfigurationManager.ConnectionStrings["GSCOMD_2._0.Properties.Settings.GSCOMDConnectionString"]?.ConnectionString;
-
             //InitializeComponent();
-            //meConectSql = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
+            //meConectSql = ConfigurationManager.ConnectionStrings["GSCOMD_2._0.Properties.Settings.GSCOMDConnectionString"]?.ConnectionString;
+
+            InitializeComponent();
+            meConectSql = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
 
             CargarComidas();
 
@@ -31,7 +36,6 @@ namespace GSCOMD_2._0
         }
 
         //private void btnbtnDelete()
-
 
         private void btnCargar_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +56,25 @@ namespace GSCOMD_2._0
 
             iscoTrab = MainWindow.iscoTrab.ToString();
             ListSelectedFoods(codeTipo, codeCate, iscoCome, iscoTrab);
+            calcularImportes();
+        }
+
+        private void calcularImportes()
+        {
+            nuItem = 0;
+            imTotal = 0;
+            
+            foreach (var item in dgComidas.Items)
+            {
+                if (item is feeding row)
+                {
+                    nuItem += Convert.ToInt32(row.Quantity);
+                    imTotal += Convert.ToDecimal(row.Cash);
+                }
+            }
+
+            imQuan.Text = nuItem.ToString();
+            imAtte.Text = imTotal.ToString("N2");
         }
 
         private void ListSelectedFoods(string tipo, string cate, string come, string codTrab)
@@ -101,40 +124,15 @@ namespace GSCOMD_2._0
             var fila = btn.DataContext as feeding;
             if (fila != null)
             {
+                nuItem -= Convert.ToInt32(fila.Quantity);
+                imTotal -= Convert.ToDecimal(fila.Cash);
+                
+                imQuan.Text = nuItem.ToString();
+                imAtte.Text = imTotal.ToString("N2");
                 feedings.Remove(fila); // Eliminar la fila de la lista observable
             }
         }
 
-
-        //private void CargarCategorias()
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(meConectSql))
-        //        {
-        //            conn.Open();
-        //            using (SqlCommand cmd = new SqlCommand("SP_TMCATE_LIST", conn))
-        //            {
-        //                cmd.CommandType = CommandType.StoredProcedure;
-
-        //                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-        //                {
-        //                    DataTable dt = new DataTable();
-        //                    adapter.Fill(dt);
-
-        //                    CboCategoria.ItemsSource = dt.DefaultView;
-        //                    CboCategoria.DisplayMemberPath = "NO_CATE";
-        //                    CboCategoria.SelectedValuePath = "CO_CATE";
-
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al cargar categorías: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //}
 
         private void CboCategoria_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

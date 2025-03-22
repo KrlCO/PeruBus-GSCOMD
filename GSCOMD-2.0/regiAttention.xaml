@@ -57,12 +57,12 @@
 
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <TextBlock Text="Cantidad" FontSize="16" FontWeight="Bold" Height="27" VerticalAlignment="Top" />
-                    <TextBlock Text="{Binding TotalCantidad}" FontSize="20" FontWeight="Bold" Foreground="Blue" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="imQuan" FontSize="20" FontWeight="Bold" Foreground="Blue" Margin="10,0,0,0"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock Text="Total (S/.)" FontSize="16" FontWeight="Bold" />
-                    <TextBlock Text="{Binding TotalPrecio}" FontSize="20" FontWeight="Bold" Foreground="Green" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="imAtte" FontSize="20" FontWeight="Bold" Foreground="Green" Margin="10,0,0,0"/>
                 </StackPanel>
             </Grid>
         </Grid>
