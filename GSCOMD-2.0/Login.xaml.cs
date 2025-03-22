@@ -15,11 +15,11 @@ namespace GSCOMD_2._0
 
         public Login()
         {
-            InitializeComponent();
-            connectionString = ConfigurationManager.ConnectionStrings["GSCOMD_2._0.Properties.Settings.GSCOMDConnectionString"]?.ConnectionString;
-
             //InitializeComponent();
-            //connectionString = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
+            //connectionString = ConfigurationManager.ConnectionStrings["GSCOMD_2._0.Properties.Settings.GSCOMDConnectionString"]?.ConnectionString;
+
+            InitializeComponent();
+            connectionString = ConfigurationManager.ConnectionStrings["gscomd_2._0.properties.settings.gscomdconnectionstring1"]?.ConnectionString;
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
