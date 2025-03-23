@@ -17,7 +17,6 @@ namespace GSCOMD_2._0
         private int nuItem = 0;
         private decimal imTotal = 0;
 
-
         public ObservableCollection<feeding> feedings { get; set; }
 
         public regiAttention()
